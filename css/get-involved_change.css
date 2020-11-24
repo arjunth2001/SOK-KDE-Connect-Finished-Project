@@ -1,0 +1,242 @@
+
+
+.letter p {
+  font-size: 20px;
+  
+}
+
+.card-title.cardheading {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0px;
+}
+
+.card-text.carddesc {
+  font-size: 16px;
+}
+
+
+
+.card-body.Junior {
+  text-align: center;
+}
+
+.faq {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.button.FAQ.Button {
+  background-color: inherit;
+  color: #3daee9;
+  font-size: 18px;
+  border-color: #2980b9;
+  font-weight: bold;
+}
+
+.row.FAQrow {
+  margin-top: 30px;
+}
+
+.faqpar {
+  font-size: 18px !important;
+  font-weight: 400;
+}
+
+.lib {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+.topsec {
+  text-align: center;
+  background-color: #31363b !important;
+}
+
+.topsec h4 {
+  font-size: 28px;
+  
+  color: white !important;
+}
+
+.topsec h3 {
+  font-weight: bold;
+  
+  color: white !important;
+}
+
+.dropdowndiv {
+  text-align: center;
+}
+
+.button.Drop.Down {
+  border-width: 2px;
+  border-color: black;
+}
+
+
+  
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.tabs {
+ 
+  overflow: hidden;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+}
+.tab {
+  width: 100%;
+  color: white;
+  overflow: hidden;
+}
+.tab-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  background: #3daee9;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tab-label:hover {
+  background: #2980b9;
+}
+.tab-label::after {
+  content: "\276F";
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  transition: all 0.35s;
+}
+.tab-content {
+  max-height: 0;
+  padding: 0 1em;
+  color: #2c3e50;
+
+  transition: all 0.35s;
+}
+.tab-close {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+  font-size: 0.75em;
+  background: #2c3e50;
+  cursor: pointer;
+}
+.tab-close:hover {
+  background: #1a252f;
+}
+input:checked + .tab-label {
+  background: #1a252f;
+}
+input:checked + .tab-label::after {
+  transform: rotate(90deg);
+}
+input:checked ~ .tab-content {
+  max-height: 100vh;
+  padding: 1em;
+}
+
+.tab-content.contribute {
+  overflow: scroll;
+}
+.dropdown.links {
+  margin: auto;
+  margin-top: 40px;
+  position: relative;
+
+  height: 200px;
+}
+
+.headinglink {
+  border-radius: 2px;
+  position: relative;
+  background: #3daee9;
+  font-size: 18px;
+  height: 40px;
+  color: white;
+  font-weight: 200;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 20px -2px #95a5a6;
+  transition: all 0.4s;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  .tab-content {
+    color: white;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .headinglink {
+    color: white !important;
+  }
+}
+
+
+
+
+@media screen and ( max-height: 846px ) and (orientation : landscape){
+  .fiximg{
+    max-width: 400px;
+  }
+  .feature h1{
+    font-size: 25px !important;
+  }
+  .feature h2{
+    font-size: 19px !important;
+  }
+}
+
+@media screen and ( max-height: 568px ) and (orientation : landscape){
+  .fiximg{
+    max-width: 400px;
+  }
+  .feature h1{
+    font-size: 20px !important;
+  }
+  .feature h2{
+    font-size: 16px !important;
+  }
+}
+
+button.listblue{
+
+ 
+  line-height: 1.5;
+  width: 100%;
+  margin: 2px;
+  background:#3daee9;
+  padding:0px;
+  
+  font-size: 18px;
+  text-align: center;
+
+
+}
+.listblue:hover {
+  background: #2980b9;
+  transition: background 0.45s;
+}
+
+.listblue a {
+  display: block;
+  color: white;
+
+  font-size: 18px;
+  font-weight: 200;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.smaller{
+  font-size: 18px;
+}

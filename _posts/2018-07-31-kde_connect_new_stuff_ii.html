@@ -1,0 +1,30 @@
+---
+title:      "KDE Connect – New Stuff II"
+created_at: 2018-07-31 14:30:46 UTC
+author:     Nicolas Fella
+layout:     post
+---
+<p>It&#8217;s time for another feature update for KDE Connect!</p>
+<p>You can now run commands on connected devices from the Plasmoid.</p>
+<div class="lightbox-image-frame"><img class="" src="https://phabricator.kde.org/file/data/efceohbdflljsqmcxbki/PHID-FILE-2g5rpbjbnhrztkzxgoer/rc.png" alt="" /></div>
+<div></div>
+<p>The Dolphin context menu entry for sending files to a connected device has been dropped in favour of a <a href="https://nicolasfella.wordpress.com/2018/07/08/the-purpose-of-things/">Purpose plugin</a>, which groups nicely with other Share features and supports more apps such as Okular and Spectacle.</p>
+<p>Albert Vaka added a presentation mode to Android which allows you to control slideshows from your phone. Aleix Pol added the same to the Kirigami app.</p>
+<p><img class="" src="https://phabricator.kde.org/file/data/622tjt2v7wqsshovusmq/PHID-FILE-uun2yarn44osg6yaam7t/Screenshot_20180731-120640.jpg" alt="" width="427" height="901" /></p>
+<p>&nbsp;</p>
+<p>As I&#8217;ve mentioned before it is quite hard to find the settings where you can define your commands for the Run Command feature.  The command list on Android now has a button that opens the appropriate settings on the desktop. Ivan Čukić added a few useful command suggestions to the menu.</p>
+<p>Friedrich Kossebau added support for a &#8220;Find my PC&#8221; plugin. You might wonder now how often he loses his PC, but it also helps finding other devices that run the C++ version of KDE Connect, such as Plasma Mobile and SailfishOS devices. I added support for triggering it on the Android side.</p>
+<p>Following a request on Reddit I added a dedicated Stop button to the media controller.</p>
+<p>Chansol Yang made sure that the pointer speed when controlling the mouse from the phone is the same across Android devices with various DPIs.</p>
+<p>Philip Cohn-Cort added the much requested dark theme option to Android.</p>
+<p><img data-attachment-id="103" data-permalink="https://nicolasfella.wordpress.com/2018/07/31/kde-connect-new-stuff-ii/screenshot_20180731-154621/" data-orig-file="https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg" data-orig-size="1080,1920" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screenshot_20180731-154621" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=169" data-large-file="https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=576" class="alignnone  wp-image-103" src="https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=576" alt="Screenshot_20180731-154621" width="466" height="829" srcset="https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=576 576w, https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=466 466w, https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=932 932w, https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=84 84w, https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=169 169w, https://nicolasfella.files.wordpress.com/2018/07/screenshot_20180731-154621.jpg?w=768 768w" sizes="(max-width: 466px) 100vw, 466px" /></p>
+<p>You can now use special URLs to trigger commands on connected devices. The urls have the form kdeconnect://runcommand/&lt;deviceid&gt;/&lt;commandid&gt;. As those are quite complex I added a helper for it. You can copy an URL to the clipboard by long-pressing a command in the command list. You can write those URLs into a NFC tag to trigger the command when your phone reads the tag or use it to integrate with services such as Tasker.</p>
+<p>The <a href="https://nicolasfella.wordpress.com/2018/04/30/volume-control-in-kde-connect/">system volume patches</a> have been merged. To make use of it you will need the latest KDE Connect from master for Desktop and Android and pulseaudio-qt installed. You can get pulseaudio-qt from <a href="https://cgit.kde.org/pulseaudio-qt.git">git</a>. We will to an initial 0.1 release soon and hope that distros will ship it soon.</p>
+<p>Besides these features we also fixed some bugs and polished the UI a little.</p>
+<p>Bluetooth support is progressing slowly. Matthijs Tijnk and Qt 5.11 fixed some issues. However, it is still not ready for the public.</p>
+<p>We also improved our device support:</p>
+<p>Aleix and I improved the Kirigami <a href="https://nicolasfella.wordpress.com/2018/06/07/kde-connect-on-plasma-mobile/">app.</a> We improved the basic pairing workflow and  you can now run commands and control media sessions.</p>
+<p>Bart Ribbers fixed an issue that was blocking KDE Connect from building it for postmarketOS. I hope to see KDE Connect there as well!</p>
+<p>Adam Pigg made a huge step towards bringing KDE Connect to Sailfish OS.</p>
+<p>We like to see KDE Connect on as many platforms as possible, and we need your help for it! Our <a href="https://phabricator.kde.org/project/board/159/">workboard</a> contains lots of ideas for new people to get started. You can ask for any assistance in our <a href="https://t.me/joinchat/AOS6gA37orb2dZCLhqbZjg">Telegram group</a>.</p>
+<p>Thanks to all contributors!</p>

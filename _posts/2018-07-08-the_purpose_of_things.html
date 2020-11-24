@@ -1,0 +1,20 @@
+---
+title:      "The Purpose of things"
+created_at: 2018-07-08 21:28:10 UTC
+author:     Nicolas Fella
+layout:     post
+---
+<p>Hi,</p>
+<p>For once this is not a post about KDE Connect (at least not directly). Besides KDE Connect I also work on several other KDE projects, one of them being the awesome <a href="https://api.kde.org/frameworks/purpose/html/index.html">Purpose</a> framework created by Aleix Pol.</p>
+<p>After Nate highlighted my latest work on Purpose (the new share menu in Dolphin) in his <a href="https://wp.me/p9uUIp-on">blog post</a> I received quite some feedback. I&#8217;m glad that many people like the idea, but I also received some criticism/suggestions for improvements. This is always welcome as long as it is fair and objective. This was true for most comments, but unfortunately not all of them. I won&#8217;t even bother to reply to unfair and personal attacks for a useful feature, but rather like to respond to appropriate criticism and inform you about my future plans for Purpose.</p>
+<p>First of all, for those who don&#8217;t know what Purpose is, it is an extensible framework to fulfill the developer&#8217;s purpose while providing an abstraction. Right now the only use-case is exporting/sharing a file, but more could be added in the future. It is used by Dolphin, Spectacle, Okular and other KDE applications and can export files to Email, Telepathy, KDE Connect, Nextcloud, Telegram (I did that one myself), Twitter, Imgur and many more.</p>
+<p>For the share menu in Dolphin&#8217;s I received some critisism/suggestions for improvements:</p>
+<ul>
+<li><strong>Send via Bluetooth and send via KDE Connect are still separate in Dolphin&#8217;s context menu and should be in the &#8216;Share&#8217; sub-menu as well.</strong> I 100% agree on that. In fact send via KDE Connect is already in the &#8216;Share&#8217; sub-menu and I&#8217;ve uploaded a <a href="https://phabricator.kde.org/D13967">patch</a> to remove the old entry. As for Send via Bluetooth: Someone would need to turn Bluedevils FileItemActionPlugin into a Purpose plugin. I&#8217;ll probably do it myself as soon as I find the time for it.</li>
+<li><strong>Dolphin&#8217;s context menu will be even more cluttered with this. </strong>It actually achieves the opposite. By combining actions like Send via Bluetooth and Send via KDE Connect into a sub-menu the top-level menu will be less cluttered.</li>
+<li><strong>I&#8217;m not going to use it, so I don&#8217;t want to have it. </strong>You can disable it in Dolphin&#8217;s settings.</li>
+<li><strong>I&#8217;m never going to use option XY, but it&#8217;s still there.</strong> Fair point. Some options are loaded conditionally, so e.g. the Telegram option is only present if Telegram is actually installed. For others this is not the case. I&#8217;m planning to make a config module to en-/disable options.</li>
+<li><strong>I don&#8217;t want to share my files by accident. </strong>Virtually all of the options require more than one click to do something, so it needs a weird accident to actually do something unwanted.</li>
+</ul>
+<p>I&#8217;d love to see more applications/services adopting Purpose. So if you are a developer interested in integrating your application with Purpose please get in touch with me and we will figure out a solution. I&#8217;m especially looking at you, fellow KDE developers <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Happy sharing <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>

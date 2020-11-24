@@ -1,0 +1,27 @@
+---
+title:      "KDE Connect – New stuff 0x3"
+created_at: 2018-11-04 22:14:13 UTC
+author:     Nicolas Fella
+layout:     post
+---
+<p>Today we released version 1.10 of the KDE Connect Android app. Therefore it&#8217;s time again to share what we&#8217;ve been working on.</p>
+<h2>Targeting Android Oreo</h2>
+<p>As of this month app updates uploaded to Google Play need to <a href="https://developer.android.com/distribute/best-practices/develop/target-sdk">target Android 8</a>. This has several implications. Targeting Oreo comes with an updated Support Library, which forces us to drop support for Android 4.0 and below. According to our Google Play data this will affect approximately 400 users. We are very sorry about that, but these users won&#8217;t receive further updates. Furthermore, Android Oreo introduced some restrictions in regard to apps running in the background. In the future in order to be able to run in the background KDE Connect needs to show a persistent notification. The good news is that you can hide the notification. The (slightly) bad news is that we cannot do it by default. To hide the notification you need to long-press it and switch it off. Other notifications from KDE Connect are unaffected by this.</p>
+<h2>1.10 Changes</h2>
+<p>These are the main changes of version 1.10. Not mentioned are countless small improvements and under-the-hood changes.</p>
+<p>Mouse input now works with the same speed independent from the phones pixel density.</p>
+<p>The media controller now allows stopping playback.</p>
+<p>Run command supports triggering commands using kdeconnect:// URLs. Useful for integration with NFC tags and 3rd-party apps.</p>
+<p>The notification filter allows quickly (de-)selecting all apps.</p>
+<p>Several settings scatterd across the UI have been bundled into a single settings screen.</p>
+<p>A lot of work has gone into how we handle SMS on the Android side in preparation for something huge. Stay tuned <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h2>Other changes</h2>
+<p>The desktop side has improved as well since my last post.</p>
+<p>The windows build of KDE Connect gained support for keyboard input.</p>
+<p>The plasmoid gained a couple of additions. In my last update I mentioned that it is possible to run commands from there. It is now also possible to lauch the command setup from there. Furthermore it is now possible to select files to share them from there.</p>
+<p>The Linux Mobile App gained many visual improvements and features. It now supports sharing files and controlling the system volume.</p>
+<p>If you are using <a href="https://volkerkrause.eu/2018/08/19/kde-itinerary-introduction.html">Itinerary</a> you can send booking information from the PC directly to the phone via KDE Connect.</p>
+<p>It is now possible to send files directly from Pantheon Files (and other Elementary apps) and Thunar via KDE Connect.</p>
+<p>Again, there are countless other improvements that I did not explicitly mention.</p>
+<p>A big thanks to all people who contributed to this!</p>
+<p>&nbsp;</p>

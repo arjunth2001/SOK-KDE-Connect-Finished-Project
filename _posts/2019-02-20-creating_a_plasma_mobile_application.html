@@ -1,0 +1,95 @@
+---
+title:      "Creating a Plasma Mobile application"
+created_at: 2019-02-20 21:16:15 UTC
+author:     Nicolas Fella
+layout:     post
+---
+<p>From February 4th until February 9th I attended a Plasma Mobile sprint in Berlin, Germany. I met a lot of people that share the vision of an open, privacy-friendly mobile platform. However, we all agree that such a platform can only succeed if there are enough people sharing that vision creating suitable apps for it. There already is a nice amount of <a href="https://mglapps.frama.io/">mobile-friendly Linux apps</a>, many of them created by the KDE Community, but of course we need more <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+
+
+
+<p>One app that is essential for my use case is an app that allows me to check departures and routes for public transport. Since I&#8217;m not aware of any existing one I decided to do my own and share my road here. The purpose of this is to be educating for both me and you and to inspire you to create your own mobile-friendly Linux apps.</p>
+
+
+
+<p>Like the other KDE mobile apps I&#8217;m going to use QML/QtQuick and <a href="https://www.kde.org/products/kirigami/">Kirigami</a>. QML is the declarative UI language from the Qt project. Unlike the older QWidgets it is designed with (embedded) touch systems in mind and thus is ideal for mobile apps. Kirigami is a set of QtQuick components designed for creating convergent mobile/desktop apps.</p>
+
+
+
+<p>Unlike other KDE projects I&#8217;m not going to use C++ for the business logic. Instead I&#8217;m going to use Python, which is now <a href="https://www.qt.io/qt-for-python">officially supported by Qt</a>. Since my Python skills are fairly basic this will be a fun challenge for me. Therefore take everything I write with a grain of salt and feel free to point out anything that is wrong or can be improved. </p>
+
+
+
+<p> This won&#8217;t be a 100% complete reference for developing for Plasma Mobile, but I&#8217;ll try to cover as many different aspects as fit into the concept of this app. I&#8217;ll also try to focus on one aspect/feature/goal per post. Also most of this will not be specific to Plasma Mobile but will work on any desktop or mobile Linux.</p>
+
+
+
+<p>So lets get started <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+
+
+
+<h2>Part 0: Basic application</h2>
+
+
+
+<p>Before getting started we need to install a few things. First of all we need Python (obviously) and Qt for Python. Qt for Python was formerly known as PySide2. You can install it via &#8216;pip install pyside2&#8217;. Next there is Kirigami. On Ubuntu you can install it via &#8216;sudo apt install qml-module-org-kde-kirigami2&#8217;. </p>
+
+
+
+<p>After that we can start coding. The following main.py file is creating an app and loading the UI from a .qml file. The exact details are not too important at this point.</p>
+
+
+
+<pre class="wp-block-code"><code>#!/usr/bin/env python3
+
+from PySide2.QtGui import QGuiApplication
+from PySide2.QtQml import QQmlApplicationEngine
+
+if __name__ == "__main__":
+    app = QGuiApplication()
+    engine = QQmlApplicationEngine()
+
+    context = engine.rootContext()
+    engine.load("qml/main.qml")
+
+    if len(engine.rootObjects()) == 0:
+        quit()
+    app.exec_()
+</code></pre>
+
+
+
+<p>Next we need to define our UI in a QML file. To keep things organized we are going to put our QML files in a qml/ subfolder. Our first main.qml is rather simple</p>
+
+
+
+<pre class="wp-block-code"><code>import QtQuick 2.2
+import QtQuick.Controls 2.4
+import org.kde.kirigami 2.0 as Kirigami
+
+Kirigami.ApplicationWindow
+{
+    width: 480
+    height: 720
+
+    Label {
+        text: "Hello world!"
+        anchors.centerIn: parent
+    }
+}</code></pre>
+
+
+
+<p>width and height are a bit arbitrary since the window will always be maximized on the phone, but this way we get a somewhat realistic window on the desktop. Executing the python file should result in something like this</p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="160" data-permalink="https://nicolasfella.wordpress.com/image/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image.png" data-orig-size="528,790" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image.png?w=201" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image.png?w=528" src="https://nicolasfella.files.wordpress.com/2019/02/image.png" alt="" class="wp-image-160" /></figure>
+
+
+
+<p>In the next post we are going to fill this window with more life using QtQuick and Kirigami components. Stay tuned <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+
+
+
+<p>The source code will be available at <a href="https://invent.kde.org/nicolasfella/kstraba">https://invent.kde.org/nicolasfella/kstraba</a></p>

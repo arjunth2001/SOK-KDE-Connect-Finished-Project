@@ -1,0 +1,209 @@
+---
+layout: default
+css-include: css/main.css
+sorted: 1
+
+features:
+  - class_name: feature browse dark
+    h1_class: browse
+    h2_class: browse-desc
+    h1_content: Files and links. Shared between devices.
+    h2_content: >
+       Want to transfer that album with photos from the latest family trip or birthday party between your computer and smartphone? KDE Connect makes this easier than ever before. You can also browse your phone files remotely or quickly open a link on the other device.
+    linkref: https://userbase.kde.org/KDEConnect#Share_and_Receive
+    webp: assets/img/files.webp
+    png: assets/img/files.png
+  
+  - class_name: feature ring
+    h1_class: notifications
+    h2_class: notifications-desc
+    h1_content: Phone notifications. Everywhere.
+    h2_content: >
+      Get all your phone notifications instantly synced to your desktop, so that you never miss that critical message. Directly reply to text messages from the computer without having to pick up your smartphone.
+    linkref: https://userbase.kde.org/KDEConnect#Multimedia_Control_Receiver
+    webp: assets/img/Notifications.webp
+    png: assets/img/Notifications.png
+  
+  - class_name: feature command dark
+    h1_class: command
+    h2_class: command-desc
+    h1_content: Fully customizable commands.
+    h2_content: >
+      Do you want to shut down your desktop from your phone? Or would you like to lock the screen with one tap? Run pre-defined commands from
+      your connected devices or make your own commands. The only limit is your imagination.
+    linkref: https://userbase.kde.org/KDEConnect#Run_Commands
+    webp: assets/img/command.webp
+    png: assets/img/command.png
+  - class_name: feature music
+    h1_class: music
+    h2_class: music-desc
+    h1_content: Music. Remotely controlled.
+    h2_content: >
+      Listening to your favourite album on your desktop? Pause, skip and change the volume remotely from your phone.
+    png: assets/img/music.png
+    webp: assets/img/music.webp
+    linkref: https://userbase.kde.org/KDEConnect#Multimedia_Control_Receiver
+  
+  - class_name: feature more dark
+    h1_class: more
+    h2_class: more-desc
+    h1_content: Presentation Remote. Virtual Trackpad. More.
+    linkref: https://userbase.kde.org/KDEConnect#Virtual_Input
+    webp: assets/img/more.webp
+    png: assets/img/more.png
+    h2_content: >
+      Forgot your presentation remote but have an important presentation to do? Use your phone as an improvised remote.
+      Want to use your phone as a trackpad? KDE Connect can help out.&nbsp; &nbsp;
+  
+  - class_name: feature ring
+    h1_class: ring
+    h2_class: ring-desc
+    h1_content: Ring your phone. Know your battery level.
+    h2_content: >
+      Forgot where you left your phone? It happens to all of us. Ring it and find
+      where it is. Additionally, your phone battery level is visible directly from your Desktop.
+    linkref: https://userbase.kde.org/KDEConnect#Ring_My_Phone
+    webp: assets/img/ring.webp
+    png: assets/img/ring.png
+  
+Boxes:
+  - class_name: product-in plasma
+    h3_content: Plasma Integration
+    h4_content: >
+      Integrate KDE Connect even deeper into your system by using the Plasma Browser Integration. This allows you to share links directly from the context menu and lets you control videos and audio on websites from your phone.
+    linkref: https://community.kde.org/Plasma/Browser_Integration
+    webp: assets/img/plasmaint.webp
+    png: assets/img/plasmaint.png
+
+  - class_name: product-in plugin dark
+    h3_content: Plugins
+    h4_content: >
+      Make your own plugins.
+    linkref: https://userbase.kde.org/KDEConnect#Available_Plugins
+    webp: assets/img/plugin.webp
+    png: assets/img/plugin.png
+
+  - class_name: product-in OpenVpn
+    h3_content: OpenVPN Support
+    h4_content: >
+      Did you forget to shutdown your computer before leaving? Or do you want to give a presentation over public wifi that doesn't allow devices to
+      communicate? We got you covered with support for VPNs.
+
+    linkref: https://community.kde.org/KDEConnect#Running_KDE_Connect_over_OpenVPN
+    webp: assets/img/ovpn.webp
+    png: assets/img/ovpn.png
+
+  - class_name: product-in wiki
+    h3_content: Wiki. Find help and tutorials.
+    h4_content: >
+      Search through our documentation to find help for every KDE Connect feature and explore the possibilities.
+
+    linkref: https://community.kde.org/KDEConnect
+    webp: assets/img/wiki.webp
+    png: assets/img/wiki.png
+---
+
+<!-- To Expand this page add the new feature on top with required attributes. Also add the required css for each class. -->
+
+<!--HTML-->
+<!-- Hero of the page. -->
+<section class="feature main dark mb-0 pt-5">
+  <h1 class="connect mx-3">KDE Connect</h1>
+  <h2 class="connect-desc mx-3">
+    Enabling communication between all your devices. Made for people like you.
+  </h2>
+  <div>
+    <a href="download.html">
+      <button class="button download m-3" type="button">
+        Download
+      </button>
+    </a>
+    <a href="https://www.kde.org/donate">
+      <button class="button donate m-3" type="button">
+        Donate
+      </button>
+    </a>
+  </div>
+
+  <picture>
+    <source srcset="assets/img/hero_main.webp" type="image/webp" />
+    <source srcset="assets/img/hero_main.png" type="image/png" />
+    <img class="img-fluid fiximg" src="assets/img/hero_main.png" alt="Alt Text!" />
+  </picture>
+</section>
+<section class ="mt-3 mb-0" id="videosection">
+ <iframe class="m-0" width="560" height="315" sandbox="allow-same-origin allow-scripts" src="https://peertube.mastodon.host/videos/embed/f8ffd8de-3df5-46b5-bbe3-114393be4b44" frameborder="0" allowfullscreen></iframe>
+</section>
+
+<!-- Loop that loops through features.-->
+{% for feature in page.features %}
+<section class="{{feature.class_name}} my-3 pt-5">
+  <h1 class="{{feature.h1_class}} mx-3">{{feature.h1_content}}</h1>
+  <h2 class="{{feature.h2_class}} mx-3">
+    {{feature.h2_content}}
+  </h2>
+  <div>
+    <a href="{{feature.linkref}}">
+      <button class="button learn-more mt-4" type="button">
+        Learn More
+      </button>
+    </a>
+  </div>
+  <picture>
+    <source srcset="{{feature.webp}}" type="image/webp" />
+    <source srcset="{{feature.png}}" type="image/png" />
+    <img class="img-fluid fiximg" src="{{feature.png}}" alt="Feature" />
+  </picture>
+</section>
+{% endfor %}
+
+<!-- Bottom Header-->
+<section class="feature download bottom dark my-3 pt-5">
+  <h1 class="madebyyou mx-3">Made for people like you.</h1>
+  <h2 class="madebyyou-desc mx-3">
+    Open Source. Free to use. For any purpose. Forever.
+  </h2>
+  <div>
+    <a href="download.html">
+      <button class="button download2 m-3" type="button">
+        Download
+      </button>
+    </a>
+    <a href="get-involved.html">
+      <button class="button getinvolved m-3" type="button">
+        Get Involved
+      </button>
+    </a>
+  </div>
+
+  <picture>
+    <source srcset="assets/img/madebyyou.webp" type="image/webp" />
+    <source srcset="assets/img/madebyyou.png" type="image/png" />
+    <img class="img-fluid" src="assets/img/madebyyou.webp" alt="Made by You" />
+  </picture>
+</section>
+
+<div class="row no-gutters grid pr-2 pb-3">
+  <!-- Loop for Boxes.  They can be added on the top. -->
+  {% for box in page.Boxes %}
+  <div class="col-md-6">
+    <div class="{{box.class_name}} m-2 pt-4">
+      <h3 class="mx-3">{{box.h3_content}}</h3>
+      <h4 class="mx-2">{{box.h4_content}}</h4>
+      <div>
+        <a href="{{box.linkref}}">
+          <button class="button learn learn-more mt-2" type="button">
+            Learn more
+          </button>
+        </a>
+      </div>
+
+      <picture>
+        <source srcset="{{box.webp}}" type="image/webp" />
+        <source srcset="{{box.png}}" type="image/png" />
+        <img class="img-fluid prodim mt-3" src="{{box.png}}" alt="Feature" />
+      </picture>
+    </div>
+  </div>
+  {% endfor %}
+</div>

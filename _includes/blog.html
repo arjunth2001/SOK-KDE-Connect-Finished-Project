@@ -1,0 +1,50 @@
+<div class="announcement-feed mb-3">
+    <h2>
+        {% if site.announcements %}
+            {{site.announcements}}{% else %}Announcements
+        {%
+    endif %}
+    </h2>
+    {% for post in paginator.posts %}
+        <div class="card announcements m-4">
+            <div class="card-body">
+                <h4 class="card-title">
+                    {{ post.title }}<small class="float-right">{{ post.date | date_to_string }}</small>
+                </h4>
+                {% if post.author %}
+                    <h6>
+                        by &nbsp;
+                        {{post.author}}
+
+                    </h6>
+                {% endif %}
+                <p class="card-text" style="margin-top: 10px;">
+                    <q>{{ post.excerpt | strip_html | truncatewords:30 }}</q>
+                </p>
+                {% if post.type == 'official' %}
+                    <a href="{{ post.url }}" class="button" role="button">Read Full Announcement</a>
+                {% else %}
+                    <a href="{{ post.url }}" class="button" role="button">Read Blog Post</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    {% if paginator.total_pages > 1 %}
+        <div class="pagination justify-content-center mt-3">
+            {% if paginator.previous_page %}
+                <a href="{{ paginator.previous_page_path }}" class="ml-1 mr-1">Prev</a>
+            {% else %}
+                <span class="ml-1 mr-1">Prev</span>
+            {% endif %}
+            <span class="ml-1 mr-1 ">Page:
+                {{ paginator.page }}
+                of
+                {{ paginator.total_pages }}</span>
+            {% if paginator.next_page %}
+                <a href="{{ paginator.next_page_path }}" class="ml-1 mr-1">Next</a>
+            {% else %}
+                <span class="ml-1 mr-1 ">Next</span>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,198 @@
+---
+layout: default
+title: Download
+plateforms:
+  - name: Linux Desktop
+    description: >
+      KDE Connect Desktop Component is available in all major distribution
+      packet managers. Non-Plasma users like Gnome and AppIndicator supported
+      desktop users have various ways to enhance their experience like
+      <a href="https://extensions.gnome.org/extension/1319/gsconnect/">GSConnect</a>
+      which implements the KDE Connect protocol in GNOME and uses our android
+      application, and
+      <a href="https://github.com/Bajoja/indicator-kdeconnect">indicator-kdeconnect</a>
+      is available for AppIndicator supported Desktops.
+    image:
+      webp: assets/img/tux.webp
+      png: assets/img/tux.png
+    learn-more:
+      text: Instructions for Linux
+      link: https://userbase.kde.org/KDEConnect#Installation
+  - name: Android
+    description: >
+      KDE Connect Android App is available on both Google Play Store and on
+      the Open Source <a href="https://f-droid.org/packages/org.kde.kdeconnect_tp/">F-Droid Store</a>.
+    image:
+      webp: assets/img/google-play-badge.webp
+      png: assets/img/google-play-badge.png
+    learn-more:
+      text: Get it from Play Store
+      link: https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp
+  - name: SailfishOS
+    description: >
+      KDE Connect is available on SailfishOS and the KDE Connect Team is
+      working on bringing connect to other linux based phones.&nbsp;
+    image:
+      webp: assets/img/SailfishOS_logo.webp
+      png: assets/img/SailfishOS_logo.png
+    image-dark:
+      webp: assets/img/SailfishOS_logo-dark.webp
+      png: assets/img/SailfishOS_logo-dark.png
+    learn-more:
+      text: Get it for SailfishOS
+      link: https://openrepos.net/content/piggz/kde-connect
+  - name: Windows
+    description: >
+      KDE Connect's early version available for Windows. Build following the detailed instructions.
+    image:
+      webp: assets/img/windows.webp
+      png: assets/img/windows.png
+    learn-more:
+      text: Instructions for Windows
+      link: https://community.kde.org/KDEConnect/Build_Windows
+  - name: macOS
+    description: >
+      An early release version for Mac OS.
+    image:
+      png: assets/img/mac.png
+      webp: assets/img/mac.webp
+    image-dark:
+      webp: assets/img/mac-dark.webp
+      png: assets/img/mac-dark.png
+    learn-more:
+      text: Instructions for Mac OS
+      link: https://community.kde.org/KDEConnect/Build_MacOS
+  - name: Plasma Mobile
+    description: >
+      A mobile friendly interface, targeted at mobile
+      Linux Platforms such as Plasma Mobile, is also available.
+    image:
+      png: assets/img/plasma.png
+      webp: assets/img/plasma.webp
+    learn-more:
+      text: Instructions for Plasma Mobile
+      link: https://community.kde.org/KDEConnect#Mobile-Friendly_QML_App
+  - name: Source code
+    description: >
+      KDE Connect Source Code can be viewed using cgit. Source Code is
+      available for all OS.
+    image:
+      png: assets/img/git.png
+      webp: assets/img/git.webp
+    learn-more:
+      text: Browse Code
+      link: https://cgit.kde.org/kdeconnect
+---
+
+<section class="topkonqi">
+  <h3 class="p-4">KDE Connect is on all major platforms.</h3>
+  <picture>
+    <source srcset="assets/img/downloadskonqi.webp" type="image/webp" />
+    <source srcset="assets/img/downloadskonqi.png" type="image/png" />
+    <img
+      alt="Downloads Header"
+      class="img-fluid"
+      src="assets/img/downloadskonqi.png"
+    />
+  </picture>
+</section>
+
+<section id="plateform" class="container">
+  {% for plateform in page.plateforms %}
+  <div class="block pt-4 pb-4 OSBlock">
+    <div class="kAppInfo">
+      <div class="kAppInfo-content">
+        <h2 class="down-head mt-2">{{ plateform.name }}</h2>
+        <p class="down-par">
+          {{ plateform.description }}
+        </p>
+        <a
+          class="button learn-more getbutton mb-2"
+          href="{{ plateform.learn-more.link }}"
+        >
+          {{ plateform.learn-more.text }}
+        </a>
+      </div>
+
+      {% if plateform.image-dark %}
+      <picture>
+        <source
+          media="(prefers-color-scheme: dark)"
+          srcset="{{ plateform.image-dark.webp }}"
+        />
+        <source
+          media="(prefers-color-scheme: dark)"
+          srcset="{{ plateform.image-dark.png }}"
+        />
+        <source
+          media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+          srcset="{{ plateform.image.webp }}"
+        />
+        <source
+          media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+          srcset="{{ plateform.image.png }}"
+        />
+        <img
+          class="img-fluid"
+          src="{{ plateform.image.png }}"
+          alt="{{ plateform.name }}"
+        />
+      </picture>
+      {% else %}
+      <picture>
+        <source srcset="{{ plateform.image.webp }}" type="image/webp" />
+        <source srcset="{{ plateform.image.png }}" type="image/png" />
+        <img
+          alt="{{ plateform.name }}"
+          class="img-fluid"
+          src="{{ plateform.image.png }}"
+        />
+      </picture>
+      {% endif%}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<div class="card-deck text-center downloadgroup m-5">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title titlecard">Pairing Two Devices</h4>
+      <p class="card-text titlepar">
+        Paiting two devices is the first step in using KDE Connect.
+      </p>
+      <a
+        class="card-link"
+        href="https://userbase.kde.org/KDEConnect#Pairing_two_devices_together"
+      >
+        <button class="button learn-more" type="button">Learn More</button>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title titlecard">Features</h4>
+      <p class="card-text titlepar">
+        A list of cool features that are there in KDE Connect.
+      </p>
+      <a class="card-link" href="https://userbase.kde.org/KDEConnect#Overview">
+        <button class="button learn-more" type="button">Learn More</button>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title titlecard">Trouble Shooting</h4>
+      <p class="card-text titlepar">
+        Still having issues? We have a trouble shooting section with all the
+        commons issues.
+      </p>
+      <a
+        class="card-link"
+        href="https://community.kde.org/KDEConnect#Troubleshooting"
+      >
+        <button class="button learn-more" type="button">Learn More</button>
+      </a>
+    </div>
+  </div>
+</div>

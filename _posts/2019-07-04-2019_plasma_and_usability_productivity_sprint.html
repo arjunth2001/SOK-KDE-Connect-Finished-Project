@@ -1,0 +1,39 @@
+---
+title:      "2019 Plasma and Usability & Productivity sprint"
+created_at: 2019-07-04 17:15:55 UTC
+author:     Nicolas Fella
+layout:     post
+---
+<p>From 19.6. to 25.6. I attended this year&#8217;s combined Plasma and Usability &amp; Productivity sprint in the beautiful city of Valencia.</p>
+
+
+
+<figure class="wp-block-image is-resized"><img data-attachment-id="214" data-permalink="https://nicolasfella.wordpress.com/photo_2019-06-29_14-53-51/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg" data-orig-size="720,1280" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="photo_2019-06-29_14-53-51" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg?w=169" data-large-file="https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg?w=576" src="https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg" alt="" class="wp-image-214" width="355" height="631" srcset="https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg?w=355&amp;h=631 355w, https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg?w=710&amp;h=1262 710w, https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg?w=84&amp;h=150 84w, https://nicolasfella.files.wordpress.com/2019/06/photo_2019-06-29_14-53-51.jpg?w=169&amp;h=300 169w" sizes="(max-width: 355px) 100vw, 355px" /></figure>
+
+
+
+<p>It was a great opportunity to meet old and new friends, drink beer and sangria on the rooftop and of course do some hacking.</p>
+
+
+
+<p>First we discussed about the future development of Plasma, especially the Wayland experience. I was particularly interested in how we can solve the two missing pieces in KDE Connect on Wayland, Keyboard input and clipboard synchronization.</p>
+
+
+
+<p>We did not only discuss things but got our hands dirty as well tough. I took the opportunity to work on several components, most of which I haven&#8217;t worked on much before:</p>
+
+
+
+<ul><li>I&#8217;ve reworked the <a href="https://phabricator.kde.org/D22176">system tray settings</a> to be more concise and usable. Furthermore I worked on hiding certain system tray elements when they are not in a useful state, making the system tray less cluttered. I also fixed the appearance of the disk quota icon in the system tray settings and the system tray itself when using a dark theme.</li><li>After I cleaned the code and polished the export menu I worked on integrating an <a href="https://phabricator.kde.org/D22074">image annotator in Spectacle</a>. Kudos to Damir Porobic for doing the hard part of it by providing <a href="https://github.com/DamirPorobic/kImageAnnotator">kImageAnnotator</a>.</li><li>I implemented a more human friendly <a href="https://phabricator.kde.org/D22006">sort order description</a> in Dolphin.</li><li>I improved the user experience of Purpose, the framework used for sharing stuff. Cancelling a share <a href="https://phabricator.kde.org/D21989">doesn&#8217;t show an error any more</a>. The share dialogs for KDE Connect and bluetooth got a <a href="https://phabricator.kde.org/D19646">huge makeover</a>. The share menu now shows <a href="https://phabricator.kde.org/D13150">ellipsis where semantically appropriate</a>.</li><li>Next to polishing the menus I implemented <a href="https://phabricator.kde.org/D21468">sharing via Purpose</a> in Gwenview.</li></ul>
+
+
+
+<p>The sprint was generously hosted by <a href="https://slimbook.es/en">Slimbook</a>. Thank you very much for that! </p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="215" data-permalink="https://nicolasfella.wordpress.com/sprint/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/07/sprint.jpg" data-orig-size="6000,4000" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="sprint" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/07/sprint.jpg?w=300" data-large-file="https://nicolasfella.files.wordpress.com/2019/07/sprint.jpg?w=1024" src="https://nicolasfella.files.wordpress.com/2019/07/sprint.jpg" alt="" class="wp-image-215" /></figure>
+
+
+
+<p>Sprints like this are only possible due to the donations KDE e.V. is getting. Please consider <a href="https://kde.org/community/donations/">donating</a> if you want us to be able to further improve our software.</p>

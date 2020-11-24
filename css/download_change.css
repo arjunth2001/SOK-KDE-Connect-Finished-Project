@@ -1,0 +1,115 @@
+.down-head {
+  font-weight: bold;
+  font-size: 25px;
+ 
+}
+
+@media (min-width: 992px) {
+  .down-head {
+    font-weight: bold;
+    font-size: 35px;
+    
+  }
+}
+
+.down-par {
+  font-weight: 400;
+  font-size: 18px;
+  max-width: 900px;
+}
+
+@media (min-width: 992px) {
+  .down-par {
+    font-weight: 400;
+    font-size: 20px;
+    max-width: 900px;
+  }
+}
+
+.button.getbutton {
+  
+  font-size: 18px;
+}
+
+.OSBlock {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+.card-title.titlecard {
+  font-weight: bold;
+}
+
+.card-text.titlepar {
+  font-weight: 400;
+}
+
+
+
+@media (max-width: 768px) {
+  .card-title.titlecard {
+    font-size: 18px;
+  }
+}
+
+.col-md-4.imagecol {
+  align-content: center;
+  text-align: center;
+}
+
+.down-par.bot {
+  font-weight: 600;
+}
+
+.topkonqi {
+  text-align: center;
+}
+
+.topkonqi h3 {
+  font-weight: bold;
+  font-size: 32px;
+  
+  color: white;
+}
+
+
+.topkonqi {
+  background-color: #31363b;
+}
+
+
+
+
+#videosection {
+  text-align: center;
+}
+
+#videosection iframe {
+  width: 90%;
+  height: 453px;
+  
+}
+
+@media (min-width: 992px) {
+  #videosection iframe {
+    width: 896px;
+    height: 504px;
+    
+  }
+}
+
+
+@media screen and ( max-width: 1494px ){
+  .prodim{
+    max-width: 280px;
+  }
+  
+}
+
+@media screen and ( min-width: 992px ){
+  .fiximg{
+    max-width: 992px;
+  }
+  
+}
+

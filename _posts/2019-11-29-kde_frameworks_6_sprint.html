@@ -1,0 +1,39 @@
+---
+title:      "KDE Frameworks 6 sprint"
+created_at: 2019-11-29 20:08:50 UTC
+author:     Nicolas Fella
+layout:     post
+---
+<p>Last week I took a train to Berlin for the KDE Frameworks 6 kickoff sprint. A lot has been said about it by my fellow attendees already, so I won&#8217;t go into detail much. </p>
+
+
+
+<p>Work on Qt 6 has begun and with Qt 6 a version 6 of the KDE Frameworks is due. This will gives us the opportunity to clean up and redesign some of our API.</p>
+
+
+
+<p>Main goal for the sprint was to discuss the major design principles for KF6. I personally focussed on two aspects. First, we want to better separate logic from the user interface to allow different UI implementations for desktop and mobile uses. Futhermore, we want to reduce the amount of dependencies our libraries have. While we are doing fine for a lot of frameworks some have very ugly dependency structures. Probably our worst offender here is KIO, the framework that powers Dolphin and many more KDE applications.</p>
+
+
+
+<p>This is the current dependency tree of KIO:</p>
+
+
+
+<figure class="wp-block-image alignfull size-full"><img data-attachment-id="264" data-permalink="https://nicolasfella.wordpress.com/kio4-2/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/11/kio4-2.png" data-orig-size="20085,4006" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="kio4-2" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/11/kio4-2.png?w=300" data-large-file="https://nicolasfella.files.wordpress.com/2019/11/kio4-2.png?w=1024" src="https://nicolasfella.files.wordpress.com/2019/11/kio4-2.png" alt="" class="wp-image-264" /></figure>
+
+
+
+<p>With some changes we discussed applied it could look like this:</p>
+
+
+
+<figure class="wp-block-image alignwide size-full"><img data-attachment-id="266" data-permalink="https://nicolasfella.wordpress.com/kio3/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/11/kio3.png" data-orig-size="13500,1582" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="kio3" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/11/kio3.png?w=300" data-large-file="https://nicolasfella.files.wordpress.com/2019/11/kio3.png?w=1024" src="https://nicolasfella.files.wordpress.com/2019/11/kio3.png" alt="" class="wp-image-266" /></figure>
+
+
+
+<p>Please note that all of this is highly tentative and might not always work out the way we imagine. While we can do some of these changes in the Frameworks 5 lifetime already most of it needs breaking API, so it will only be available in KF6.</p>
+
+
+
+<p>This work will hopefully make KDE Frameworks more appealing for users outside of KDE. If you are developing Qt-based software and would like to know more about how KDE Frameworks can help you please contact us at #kde-devel on freenode or kde-frameworks-devel@kde.org</p>

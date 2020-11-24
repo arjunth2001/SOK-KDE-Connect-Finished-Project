@@ -1,0 +1,32 @@
+---
+title:      "KDE Connect mDNS: Nuremberg Megaspring Part 2"
+created_at: 2019-07-27 11:19:01 UTC
+author:     Simon Redman
+layout:     post
+---
+<p>Sprints are a great time to talk in real-time to other project developers. One of the things we talked about at the KDE Connect part of the &#8220;Nuremberg Megasprint&#8221; was the problem that our current discovery protocol often doesn&#8217;t work, since many networks block the UDP broadcast we currently use. Additionally, we often get feature requests for more privacy-conscious modes of KDE Connect operation. Fixing either of these problems would require a new Link Provider (as we call it), and maybe we can fix both at once.</p>
+<h3>A New Backend</h3>
+<p>First, let&#8217;s talk about discovery. The current service discovery mechanism in KDE Connect is we send a multicast UDP packet to the current device&#8217;s /24 subnet. This is not ideal, since some networks are not /24, and since many public networks block packets of this sort. Alternatively, you can manually add an IP address which then establishes a direct connection. Manual connections work on many networks with block UDP, but it is a bit of a hassle. Can we find a better way to auto-discover services?</p>
+<p>A few months ago, a user named rytilahti posted two patches to our Phabricator for KDE Connect service advertisement over mDNS (aka avahi, aka nsd, aka &#8230;). The patches were for advertisement-only (it still doesn&#8217;t establish a connection) but they were a good proof of concept to show that mDNS works on many institutional networks which block UDP multicast since mDNS is frequently used for other things like network printer discovery which are desired by those institutional networks.</p>
+<p>I would post a screenshot here, but I don&#8217;t want to spread details of an internal network too far <img src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>At the sprint, we talked about whether we would like to move forward with these and we decided it was useful, so Albert Vaca and I put together two proof of concept patches to start trying to establish a connection using mDNS advertisements:</p>
+<ul>
+<li>Android: <a href="https://invent.kde.org/kde/kdeconnect-android/merge_requests/91" rel="nofollow">https://invent.kde.org/kde/kdeconnect-android/merge_requests/91</a></li>
+<li>Qt/C++: <a href="https://invent.kde.org/kde/kdeconnect-kde/merge_requests/147" rel="nofollow">https://invent.kde.org/kde/kdeconnect-kde/merge_requests/147</a></li>
+</ul>
+<p>The patches are not yet fully working. We can both see each other and attempt to establish a connection but then something goes wrong and one of them crashes. Given that this was less than 8 hours of work, I would call this a success!</p>
+<p>There is still plenty to do, but it was very helpful to be able to sit in-person and talk about what we wanted to accomplish and work out the details of the new protocol.</p>
+<h3>More Privacy</h3>
+<p>Before we talk about privacy, it helps to have a quick view of how KDE Connect currently establishes a connection:</p>
+<ul>
+<li>As described above, both devices send a multicast UDP packet. This is what we call an &#8220;Identity Packet&#8221;, where each device send its name, capabilities (enabled plugins), and unique ID</li>
+<li>If your device receives an identity packet from a device it recognizes, it establishes a secure TCP connection (if both devices open a connection, the duplicate connection is handled and closed)</li>
+</ul>
+<p>As long as we are talking about a new backend, let&#8217;s think about ways to make KDE Connect more privacy-conscious. There are two problems to address:</p>
+<ul>
+<li>Device names often contain personal information. For instances &#8220;Simon&#8217;s Phone&#8221; tells you that &#8220;Simon&#8221; is around</li>
+<li>Device IDs are unique and unchanging. Even assuming I rename my phone, you can still track a particular device by checking for the same ID to show up again and again</li>
+</ul>
+<p>Solving the first problem is easy. We want the user&#8217;s device name so we can display it in the list of available devices to pair with. So, instead of sending that information in the identity all the time, have some &#8220;discovery mode&#8221; switch which otherwise withholds the device name until a connection to an already-trusted device is established.</p>
+<p>This leaves the second problem, which quite a bit more tricky. One answer is to have trusted user-selected trusted wifi networks, so KDE Connect doesn&#8217;t broadcast on a random wifi that the user connects to. But what if I connect to, say, my university network where I want to use KDE Connect but I don&#8217;t want to tell everyone that I&#8217;m here?</p>
+<p>We don&#8217;t have a final answer to this question, but we discussed a few possible solutions. We would like some way of verifying ourselves to the other device which conceals our identity behind some shared secret, so the other device can trust that we are who we say we are, but other devices can&#8217;t fingerprint us. It is a tricky problem but not yet one to solve. Step 1 is to get the new mDNS backend working, step 2 is to add advanced features to it!</p>

@@ -1,0 +1,212 @@
+---
+title:      "Creating a Plasma Mobile App 1 – Basic Controls"
+created_at: 2019-02-28 20:32:15 UTC
+author:     Nicolas Fella
+layout:     post
+---
+<p>My last post shows how to create a stub Python/Kirigami app that doesn&#8217;t do anything. Time to change that! In this post we&#8217;re filling the screen with some controls.</p>
+
+
+
+<h2>Kirigami Pages</h2>
+
+
+
+<p>Kirigami apps are typically organized in Pages. Those are the different &#8216;Screens&#8217; of an app. If you come from the Android world you can think of them as the view part of activities. In our case we want to have an initial page that offers to enter a stop or a destination and opens a new page that shows a list of possible routes. Clicking on one of the list items opens a new page with a detailed view about the connections.</p>
+
+
+
+<p>Pages are organized in a pagestack where pages can be pushed and popped.  On a phone only the topmost page is shown, whereas on a larger screen (desktop or tablet) multiple pages can be shown next to each other.</p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="173" data-permalink="https://nicolasfella.wordpress.com/image-3/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-3.png" data-orig-size="540,810" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-3" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-3.png?w=200" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-3.png?w=540" src="https://nicolasfella.files.wordpress.com/2019/02/image-3.png" alt="" class="wp-image-173" /><figcaption>A single page on the phone</figcaption></figure>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="174" data-permalink="https://nicolasfella.wordpress.com/image-4/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-4.png" data-orig-size="1214,919" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-4" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-4.png?w=300" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-4.png?w=1024" src="https://nicolasfella.files.wordpress.com/2019/02/image-4.png" alt="" class="wp-image-174" /><figcaption>Two pages next to each other on the desktop</figcaption></figure>
+
+
+
+<p>So let&#8217;s create some pages! I&#8217;m going put each page in its own .qml file and let the name end with Page. Our first version of StartPage.qml looks like this:</p>
+
+
+
+<pre class="wp-block-code"><code>import QtQuick 2.2
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.4
+import org.kde.kirigami 2.0 as Kirigami
+
+Kirigami.Page
+{
+    title: "Start journey"
+}</code></pre>
+
+
+
+<p>It produces an empty page with a title. Before we can actually see it we need to add it to the pageStack. Replace the Label {} declaration in main.qml with</p>
+
+
+
+<pre class="wp-block-code"><code>pageStack.initialPage: Qt.resolvedUrl("StartPage.qml")</code></pre>
+
+
+
+<p>pageStack.initialPage is, well, setting the initial Page of the Page stack.  Qt.resolveUrl is converting the relative URL of the QML file into an absolute one. Starting the app gives us an empty page</p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="177" data-permalink="https://nicolasfella.wordpress.com/image-5/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-5.png" data-orig-size="480,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-5" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-5.png?w=200" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-5.png?w=480" src="https://nicolasfella.files.wordpress.com/2019/02/image-5.png" alt="" class="wp-image-177" /></figure>
+
+
+
+<p>Time to fill it with some content.</p>
+
+
+
+<h2>Basic controls</h2>
+
+
+
+<p>On the start page we need need a way to enter start and destination of our journey as well as the date and time of our travel. For start and destination we are using simple TextFields from QtQuick Controls 2. Note that the older version 1 of QtQuick Controls is still around for the foreseable future, but we want to avoid using that. We&#8217;re extending StartPage.qml with our controls</p>
+
+
+
+<pre class="wp-block-code"><code>ColumnLayout {
+    width: parent.width
+
+    Label {
+        text: "From:"
+    }
+    TextField {
+        Layout.fillWidth: true
+        placeholderText: "Würzburg..."
+    }
+    Label {
+        text: "To:"
+    }
+    TextField {
+        Layout.fillWidth: true
+        placeholderText: "Berlin..."
+    }
+}</code></pre>
+
+
+
+<p>A ColumnLayout is a component that positions its children vertically. We set it to be as wide as its parent, the page. The TextFields shall span the whole width as well. Instead of using the same &#8216;width: parent.width&#8217; we are using &#8216;Layout.fillWidth: true&#8217;. This property is only available to children of a Layout. The difference to the first way is that all the width that is not already occupied by other elements in the layout is filled.</p>
+
+
+
+<p>Next we need some way to enter a departure date and time. Unfortunately I&#8217;m not aware of any ready-to-use date and time pickers in QtQuick and Kirigami, so I&#8217;ll leave this open for a future post. For the time being two simple placeholder buttons shall be enough. Let&#8217;s add them to our ColumnLayout</p>
+
+
+
+<pre class="wp-block-code"><code>RowLayout {
+    width: parent.width
+    Button {
+        text: "Pick date"
+        Layout.fillWidth: true
+    }
+    Button {
+        text: "Pick time"
+        Layout.fillWidth: true
+    }
+}</code></pre>
+
+
+
+<p>Now our app looks like this. Both buttons have the &#8220;Layout.fillWidth&#8221; property set to true, resulting in each one getting 50% of the space.</p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="180" data-permalink="https://nicolasfella.wordpress.com/image-6/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-6.png" data-orig-size="480,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-6" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-6.png?w=200" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-6.png?w=480" src="https://nicolasfella.files.wordpress.com/2019/02/image-6.png" alt="" class="wp-image-180" /></figure>
+
+
+
+<p>The buttons look a bit weird, don&#8217;t they? That&#8217;s because they are using the built-in QtQuick Controls style. If you are using Plasma you are probably used to the org.kde.desktop style which emulates the active Qt Widgets style. We can force our app to use the org.kde.desktop style by running &#8216;QT_QUICK_CONTROLS_STYLE=&#8221;org.kde.desktop&#8221; ./main.py&#8217;</p>
+
+
+
+<p></p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="181" data-permalink="https://nicolasfella.wordpress.com/image-7/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-7.png" data-orig-size="480,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-7" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-7.png?w=200" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-7.png?w=480" src="https://nicolasfella.files.wordpress.com/2019/02/image-7.png" alt="" class="wp-image-181" /></figure>
+
+
+
+<p>Looks closer to what we have on the desktop, doesn&#8217;t it? Qt also offers a &#8216;material&#8217; style that follows Android&#8217;s material guidelines</p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="182" data-permalink="https://nicolasfella.wordpress.com/image-8/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-8.png" data-orig-size="480,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-8" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-8.png?w=200" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-8.png?w=480" src="https://nicolasfella.files.wordpress.com/2019/02/image-8.png" alt="" class="wp-image-182" /></figure>
+
+
+
+<p>Next we need a way to press &#8220;Search&#8221;. We could solve that with yet another button, but Kirigami offers another way. Pages in Kirigami can have Actions associated with them. The presentation differes from the phone to the desktop. On the phone actions are displayed on the bottom where they are easily reachable while on the desktop they are displayed in form of a toolbar at the top of the page. Let&#8217;s add an action to our page</p>
+
+
+
+<pre class="wp-block-code"><code>Kirigami.Page
+{
+    id: root
+
+    title: "Start journey"
+
+    actions.main: Kirigami.Action {
+        icon.name: "search"
+        text: "Search"
+        onTriggered: pageStack.push(Qt.resolvedUrl("ConnectionsPage.qml"))
+    }
+
+    ColumnLayout {
+</code></pre>
+
+
+
+<p>On the phone we get this</p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="184" data-permalink="https://nicolasfella.wordpress.com/image-9/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-9.png" data-orig-size="480,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-9" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-9.png?w=200" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-9.png?w=480" src="https://nicolasfella.files.wordpress.com/2019/02/image-9.png" alt="" class="wp-image-184" /></figure>
+
+
+
+<p>while on the desktop we get that</p>
+
+
+
+<figure class="wp-block-image"><img data-attachment-id="185" data-permalink="https://nicolasfella.wordpress.com/image-10/" data-orig-file="https://nicolasfella.files.wordpress.com/2019/02/image-10.png" data-orig-size="480,720" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="image-10" data-image-description="" data-medium-file="https://nicolasfella.files.wordpress.com/2019/02/image-10.png?w=200" data-large-file="https://nicolasfella.files.wordpress.com/2019/02/image-10.png?w=480" src="https://nicolasfella.files.wordpress.com/2019/02/image-10.png" alt="" class="wp-image-185" /></figure>
+
+
+
+<p>You can force the mobile view on the desktop by setting the QT_QUICK_CONTROLS_MOBILE variable to 1.</p>
+
+
+
+<p>Triggering the action pushes ConnectionsPage.qml on the pageStack. Of cource we need to create that one now:</p>
+
+
+
+<pre class="wp-block-code"><code>import QtQuick 2.2
+import QtQuick.Layouts 1.1
+import QtQuick.Controls 2.4
+import org.kde.kirigami 2.4 as Kirigami
+
+Kirigami.Page
+{
+    title: "Connections"
+}
+</code></pre>
+
+
+
+<p>Right now it&#8217;s just an empty page, we&#8217;re going to fill it with life in the next post.</p>
+
+
+
+<p>You can find the full source code for all posts on <a href="https://invent.kde.org/nicolasfella/kstraba">Git</a>.</p>
+
+
+
+<p>Happy hacking!</p>
